@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Who is tweeting this week at NixonMcInnes?</title>
+  <meta name="description" content="Who is Tweeting from the NixonMcInnes account this week?">
+  <meta name="author" content="NixonMcinnes">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- CSS: implied media="all" -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Uncomment if you are specifically targeting less enabled mobile browsers
+  <link rel="stylesheet" media="handheld" href="css/handheld.css">  -->
+
+
+    <!-- Include Google fonts font that is similar to the NM font -->
+    <link href='http://fonts.googleapis.com/css?family=Arvo:regular,bold' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+            <h1>This week&apos;s <a href="http://www.twitter.com/nixonmcinnes"><span class="title nixon">Nixon</span><span class="title mcinnes">McInnes</span></a> tweet team is&hellip;</h1>
+    </header>
+    <div id="main" role="main">
+    </div>
+        <div class="clearfix"></div>
+    <footer>
+            <h5>Made with love by <a href="http://www.nixonmcinnes.co.uk"><span class="title nixon">Nixon</span><span class="title mcinnes">McInnes</span></a></h5>
+    </footer>
+  </div> <!-- end of #container -->
+
+    <!-- template -->
+    <script type="text/html" id="template">
+        <div id="team-wrapper">
+            <h2>${name}</h2>
+            <ul class="info">
+                {{each members}}
+                    <li>
+                                <span class="member ${twitter_account}">
+                                    {{if twitter_account}}
+                                        <a href="http://www.twitter.com/${twitter_account}">
+                                    {{/if}}
+                                    ${$.trim(name)}{{if twitter_account}}</a>{{/if}}
+                                    <span class="loading"><img src="ajax-loader.gif"></span>
+                                </span>
+                                <p>
+                                    <span>^${initials}</span>
+                                    {{if nmsite}} / <span><a href="http://www.nixonmcinnes.co.uk/people/${nmsite}">Nizomk</a></span>{{/if}}
+                                    <span>{{if twitter_account}} /
+                                        <a href="http://www.twitter.com/${twitter_account}">Twitter</a>
+                                    {{/if}}</span>
+                                    <span>&nbsp;</span>
+                                </p>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/html" id="everybody_else_template">
+        <div id="panel-wrapper">
+            <div class="panel div-nextweek">
+                <h3>Next week</h3>
+                <h4>Team: ${next_week.name}</h4>
+                <ul class="everybody">
+                    {{each next_week.members}}
+                        <li>
+                            <p><span>
+                                {{if nmsite}}<a href="http://www.nixonmcinnes.co.uk/people/${nmsite}">{{/if}}
+                                    ${name}
+                                {{if nmsite}}</a>{{/if}}
+                            </span>
+                            <span>
+                                {{if twitter_account}}<a href="http://www.twitter.com/${twitter_account}">{{/if}}
+                                    (^${initials})
+                                {{if twitter_account}}</a>{{/if}}
+                            </span></p>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="panel div-everybody">
+                <h3>Everybody else</h3>
+                <ul class="everybody">
+                    {{each members}}
+                        <li>
+                            <p><span>
+                                {{if nmsite}}<a href="http://www.nixonmcinnes.co.uk/people/${nmsite}">{{/if}}
+                                    ${name}
+                                {{if nmsite}}</a>{{/if}}
+                            </span>
+                            <span>
+                                {{if twitter_account}}<a href="http://www.twitter.com/${twitter_account}">{{/if}}
+                                    (^${initials})
+                                {{if twitter_account}}</a>{{/if}}
+                            </span></p>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div><!-- end wrapper -->
+    </script>
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.min.js"></script>
+
+    <script src="jquery.tmpl.min.js"></script>
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script src="main.js"></script>
+  <!-- end scripts-->
+
+  <!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+    s.parentNode.insertBefore(g,s)}(document,"script"));
+  </script>
+
+</body>
+</html>
